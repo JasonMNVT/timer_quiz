@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Timer Quiz
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="question-container">
+		<h2>
+			{{ question.title }}
+		</h2>
+		<div class="responses-container">
+			{% for response in responses %}
+				<button class="btn btn-outline-light">
+					{{ response.title }}
+				</button>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			</div>
+		</div>
+	{% endfor %}
+</div></div><script>
+// 	setInterval(function () {
+// document.location.href = "/"
+// }, 3000);
+// </script>{% endblock %}

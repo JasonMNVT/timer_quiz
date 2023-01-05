@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Timer Quiz
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Vous avez choisi la catégorie:
+			{{ category.name }}
+		</h1>
+		<div class="question-container">
+			{% for question in questions %}
+				<h2>
+					<a href="{{ path('event_question', {'id': question.id}) }}">
+						{{ question.title }}
+					</a>
+				</h2>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+// <script>
+// 	setInterval(function () {
+// document.location.href = "/"
+// }, 3000);
+// </script>{% endblock %}

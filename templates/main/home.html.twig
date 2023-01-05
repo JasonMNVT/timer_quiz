@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Timer Quiz
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="display-2">Timer Quiz</h1>
+		<h3 class="mb-4">Choissisez une catégorie</h3>
+		<div class="cards-container">
+			{% for category in categories %}
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{ category.img }}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title mb-3">
+							{{ category.name }}
+						</h5>
+						<a href="{{ path('event_category', {'id': category.id})}}" class="btn btn-dark">Démarrer le quiz</a>
+					</div>
+				</div>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

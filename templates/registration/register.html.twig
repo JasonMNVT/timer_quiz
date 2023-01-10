@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Timer Quiz
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1>Register</h1>
+	<div class="body-container">
+		<div class="homepage-container">
+			<h2 class="display-5">Inscription</h2>
 
-		{{ form_start(registrationForm) }}
-		{{ form_row(registrationForm.username) }}
-		{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+			{{ form_start(registrationForm) }}
+			{{ form_row(registrationForm.username, {
+			label: 'Username :'
+		 }) }}
+			{{ form_row(registrationForm.plainPassword, {
+            label: 'Password :'
         }) }}
-		{{ form_row(registrationForm.agreeTerms) }}
+			{{ form_row(registrationForm.agreeTerms) }}
 
-		<button type="submit" class="btn">Register</button>
-		{{ form_end(registrationForm) }}
+			<button type="submit" class="btn btn-md btn-primary">S'inscrire</button>
+			{{ form_end(registrationForm) }}
+		</div>
 	</div>
 {% endblock %}

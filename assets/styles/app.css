@@ -5,9 +5,28 @@
 
 body {
     width: 100vw;
-    height: 100vh;;
+    height: 100vh;
+    ;
     background-image: url(https://cdn.pixabay.com/photo/2015/12/09/10/38/question-mark-1084522_960_720.jpg);
     background-size: cover;
+}
+
+.body-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage-container {
+    width: 100%;
+    min-height: 70%;
+    background-color: rgba(0, 30, 40, .9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container {
@@ -29,22 +48,27 @@ img {
 }
 
 h1 {
-    font-family: 'Rubik Vinyl', cursive;
+    font-family: 'Rubik Glitch', cursive;
+    color: white;
 }
 
 h2 {
     padding: 20px;
+    color: white;
+    font-family: 'Rubik Moonrocks', cursive;
 }
 
 h3 {
-    font-family: 'Rubik Bubbles', cursive;
+    font-family: 'Rubik Moonrocks', cursive;
+    color: white;
 }
 
 h5 {
     color: rgb(21, 21, 20);
 }
 
-th, td {
+th,
+td {
     color: antiquewhite;
 }
 
@@ -65,4 +89,61 @@ th, td {
 
 button {
     width: 40%;
+    font-family: 'Rubik Moonrocks', cursive!important;
+}
+
+nav {
+    background-color: #001E28;
+}
+
+.nav-logo {
+    font-family: 'Rubik Glitch', cursive !important;
+    font-size: 28px !important;
+}
+
+.nav-link {
+    color: white;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-size: 14px;
+}
+
+span {
+    font-family: 'Rubik Moonrocks', cursive;
+}
+
+.homepage-button {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+a {
+    font-family: 'Rubik Moonrocks', cursive!important;
+    color: white!important;
+}
+
+.btn {
+    border-radius: 50px;
+    background-color: #41C2FA;
+}
+
+form {
+    width: 35%!important;
+    display: flex!important;
+    justify-content: center!important;
+    flex-direction: column!important;
+    align-items: center!important;
+}
+
+label {
+    font-family: 'Rubik Moonrocks', cursive;
+    color: white;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+.quiz-question {
+    font-family: 'Rubik Dirt', cursive;
 }

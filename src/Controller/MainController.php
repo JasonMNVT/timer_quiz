@@ -11,10 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'home', methods: ['GET'])]
-    public function index(CategoryRepository $categoryRepository): Response
+    #[Route('/', name: 'home')]
+    public function index(): Response
     {
         return $this->render('main/home.html.twig', [
+        ]);
+    }
+
+    #[Route('/homepage', name: 'homepage', methods: ['GET'])]
+    public function homepage(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('main/homepage.html.twig', [
             "categories" => $categoryRepository->findAll(),
         ]);
     }

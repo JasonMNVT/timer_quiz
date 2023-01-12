@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index
+{% block title %}Timer Quiz
 {% endblock %}
 
 {% block body %}
+	{% block menu %}
+		{% include "component/navbar.html.twig" %}
+	{% endblock %}
 	<div class="container">
-		<h1>Category index</h1>
+		<h2 class="display-5">Categorie(s)</h2>
 
 		<table class="table">
 			<thead>
@@ -33,6 +36,6 @@
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_category_new') }}" class="btn btn-success">Create new</a>
+		{# <a href="{{ path('app_category_new') }}" class="btn btn-success">Create new</a> #}
 	</div>
 {% endblock %}

@@ -14,8 +14,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        return $this->render('main/home.html.twig', [
-        ]);
+        return $this->render('main/home.html.twig', []);
     }
 
     #[Route('/homepage', name: 'homepage', methods: ['GET'])]
@@ -29,9 +28,11 @@ class MainController extends AbstractController
     #[Route('/categorie/{id}', name: 'event_category', methods: ['GET'])]
     public function showQuestions(Category $category): Response
     {
+        $tabQuestions = $category->getQuestions()->toArray();
+
         return $this->render('main/category.html.twig', [
             'category' => $category,
-            'questions' => $category->getQuestions()->toArray(),
+            'questions' => $tabQuestions,
         ]);
     }
 
@@ -40,10 +41,16 @@ class MainController extends AbstractController
     {
         $tabResponses = $question->getResponses()->toArray();
         shuffle($tabResponses);
-        
+
         return $this->render('main/question.html.twig', [
             'question' => $question,
             'responses' => $tabResponses,
         ]);
+    }
+
+    #[Route('/historique', name: 'historique')]
+    public function historique(): Response
+    {
+        return $this->render('main/historique.html.twig', []);
     }
 }

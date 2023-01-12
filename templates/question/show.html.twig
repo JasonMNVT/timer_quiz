@@ -4,26 +4,30 @@
 {% endblock %}
 
 {% block body %}
+	{% block menu %}
+		{% include "component/navbar.html.twig" %}
+	{% endblock %}
 	<div class="container">
-		<h1>Question</h1>
+		<h2 class="display-5">Question</h2>
 
 		<table class="table">
 			<tbody>
 				<tr>
 					<th>Id</th>
-					<td>{{ question.id }}</td>
+					<th>Title</th>
+					<th>Actions</th>
 				</tr>
 				<tr>
-					<th>Title</th>
+					<td>{{ question.id }}</td>
 					<td>{{ question.title }}</td>
+					<td>
+						<a href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_question_index') }}">back to list</a>
-
-		<a href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
-
 		{{ include('question/_delete_form.html.twig') }}
+		<a href="{{ path('app_question_index') }}">back to list</a>
 	</div>
 {% endblock %}

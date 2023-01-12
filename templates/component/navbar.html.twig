@@ -3,23 +3,26 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
+		<ul class="navbar-nav" style="gap: 15px;width: 100%">
 			<li class="nav-item">
 				<a class="nav-logo nav-link" href="{{ path('homepage')}}">Timer Quiz</a>
 			</li>
 			{% if app.user %}
 				<li class="nav-item active">
-					<a class="nav-link" href="/">Mon Profil</a>
+					<p>Connecté(e) : {{ app.user.userIdentifier }}</p>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="{{ path('app_logout')}}">Se déconnecter</a>
+					<u><a class="nav-link" href="{{ path('app_account')}}">Mon Profil</a></u>
+				</li>
+				<li class="nav-item active" style="margin-left: 50%">
+					<u><a class="nav-link" href="{{ path('app_logout')}}">[ Déconnexion ]</a></u>
 				</li>
 			{% else %}
 				<li class="nav-item active">
-					<a class="nav-link" href="{{ path('app_register')}}">S'inscrire</a>
+					<u><a class="nav-link" href="{{ path('app_register')}}">S'inscrire</a></u>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="{{ path('app_login')}}">Se connecter</a>
+					<u><a class="nav-link" href="{{ path('app_login')}}">Se connecter</a></u>
 				</li>
 			{% endif %}
 		</ul>

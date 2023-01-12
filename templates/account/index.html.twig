@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Timer Quiz
+{% endblock %}
+
+{% block body %}
+	{% block menu %}
+		{% include "component/navbar.html.twig" %}
+	{% endblock %}
+	<div class="container">
+		<h2 class="display-5">Mon compte</h2>
+		<div class="account-buttons">
+			<a class="btn" href="{{ path('app_category_index')}}">Voir catégorie(s)</a>
+			<a class="btn" href="{{ path('app_question_index')}}">Voir question(s)</a>
+			<a class="btn" href="{{ path('app_response_index')}}">Voir réponse(s)</a>
+			<a class="btn" href="{{ path('app_category_new')}}">Créer une catégorie</a>
+			<a class="btn" href="{{ path('app_question_new')}}">Créer une question</a>
+			<a class="btn" href="{{ path('app_response_new')}}">Créer une réponse</a>
+			<a class="btn" href="{{ path('historique')}}">Voir historique</a>
+		</div>
+	</div>
+{% endblock %}

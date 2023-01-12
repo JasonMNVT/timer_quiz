@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Question
+{% block title %}Timer Quiz
 {% endblock %}
 
 {% block body %}
+	{% block menu %}
+		{% include "component/navbar.html.twig" %}
+	{% endblock %}
 	<div class="container">
-		<h1>Edit Question</h1>
+		<h2 class="display-5">Editer une question</h2>
 
 		{{ include('question/_form.html.twig', {'button_label': 'Update'}) }}
-
-		<a href="{{ path('app_question_index') }}">back to list</a>
-
 		{{ include('question/_delete_form.html.twig') }}
+		<a href="{{ path('app_question_index') }}">back to list</a>
 	</div>
 {% endblock %}

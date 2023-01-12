@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Response{% endblock %}
+{% block title %}Timer Quiz
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Response</h1>
+	{% block menu %}
+		{% include "component/navbar.html.twig" %}
+	{% endblock %}
+	<div class="container">
+		<h2 class="display-5">Editer une réponse</h2>
 
-    {{ include('response/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_response_index') }}">back to list</a>
-
-    {{ include('response/_delete_form.html.twig') }}
+		{{ include('response/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('response/_delete_form.html.twig') }}
+		<a href="{{ path('app_response_index') }}">back to list</a>
+	</div>
 {% endblock %}

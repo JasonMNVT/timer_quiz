@@ -6,7 +6,6 @@
 body {
     width: 100vw;
     height: 100vh;
-    ;
     background-image: url(https://cdn.pixabay.com/photo/2015/12/09/10/38/question-mark-1084522_960_720.jpg);
     background-size: cover;
 }
@@ -30,15 +29,22 @@ body {
 }
 
 .container {
-    width: 70%;
+    width: 80%;
     min-height: 100%;
     text-align: center;
     color: antiquewhite;
     background-color: rgba(0, 30, 40, .9);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+    gap: 15px;
 }
 
 .cards-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
@@ -65,6 +71,12 @@ h3 {
 
 h5 {
     color: rgb(21, 21, 20);
+}
+
+p {
+    font-family: 'Rubik Moonrocks', cursive;
+    color: white;
+    margin: 0!important;
 }
 
 th,
@@ -94,6 +106,13 @@ button {
 
 nav {
     background-color: #001E28;
+    position: fixed!important;
+    height: 60px;
+    width: 100%;
+}
+
+.navbar-nav {
+    align-items: center;
 }
 
 .nav-logo {
@@ -146,4 +165,14 @@ input {
 
 .quiz-question {
     font-family: 'Rubik Dirt', cursive;
+}
+
+.account-buttons {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    flex-direction: column;
 }

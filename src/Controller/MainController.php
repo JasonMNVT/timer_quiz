@@ -30,10 +30,12 @@ class MainController extends AbstractController
     {
         $tabQuestions = $category->getQuestions()->toArray();
 
-        return $this->render('main/category.html.twig', [
+        return $this->redirectToRoute('event_question', ['id' => $tabQuestions[0]->getId()]);
+
+        /*return $this->render('main/category.html.twig', [
             'category' => $category,
             'questions' => $tabQuestions,
-        ]);
+        ]);*/
     }
 
     #[Route('/question/number/{id}', name: 'event_question', methods: ['GET'])]

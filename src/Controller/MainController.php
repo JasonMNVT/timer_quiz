@@ -41,12 +41,25 @@ class MainController extends AbstractController
     #[Route('/question/number/{id}', name: 'event_question', methods: ['GET'])]
     public function showResponses(Question $question): Response
     {
+        // Tableau des réponses de la question
         $tabResponses = $question->getResponses()->toArray();
+        // Retrouver la catégorie à partir de la question
+        $categorie = $question->getCategory();
+        // Tableau des des questions de la catégorie
+        $questions = $categorie->getQuestions()->toArray();
+        // parcourir le tableau de question, et prendre celle juste après l'actuel $question
+        for ($i = 0; $i < count($questions); $i++) {
+            if ($question == $questions[$i]) {
+                // puis tu recupere la question après $next_question
+                $next_question = $questions[$i + 1];
+            }
+        }
         shuffle($tabResponses);
 
         return $this->render('main/question.html.twig', [
             'question' => $question,
             'responses' => $tabResponses,
+            'next_question' => $next_question
         ]);
     }
 

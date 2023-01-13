@@ -17,23 +17,29 @@
 						{{ response.title }}
 					</button>
 				{% else %}
+				<table>
 					<tr>
 						<td colspan="3">no records found</td>
 					</tr>
-				</div>
+				</table>
 			</div>
-		{% endfor %}
+				{% endfor %}
+		</div>
+		<a href={{ path('event_question', {'id': next_question.id}) }} style="display: none;" id="next_question"/>
 	</div>
-</div>
 <script>
-let count = 11
-const h1 = document.querySelector(".timer");
-// setTimeout(() => {
-// document.location.href = "/question/number/12";
-// }, 11000);
-let interval = setInterval(() => {
-h1.innerHTML = -- count;
-if (count === 0) 
-clearInterval(interval);
-}, 1000);
-</script>{% endblock %}
+	let count = 11
+
+	const h1 = document.querySelector(".timer");
+
+	setTimeout(() => {
+		document.getElementById('next_question').click();
+	}, 11000);
+
+	let interval = setInterval(() => {
+	h1.innerHTML = -- count;
+	if (count === 0) 
+	clearInterval(interval);
+	}, 1000);
+</script>
+{% endblock %}

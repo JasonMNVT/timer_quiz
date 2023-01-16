@@ -45,12 +45,13 @@ class MainController extends AbstractController
         $tabResponses = $question->getResponses()->toArray();
         // Retrouver la catégorie à partir de la question
         $categorie = $question->getCategory();
-        // Tableau des des questions de la catégorie
+        // Tableau des questions de la catégorie
         $questions = $categorie->getQuestions()->toArray();
+        // puis tu recupere la question après $next_question
+        $next_question = null;
         // parcourir le tableau de question, et prendre celle juste après l'actuel $question
-        for ($i = 0; $i < count($questions); $i++) {
+        for ($i = 0; $i < count($questions) - 1; $i++) {
             if ($question == $questions[$i]) {
-                // puis tu recupere la question après $next_question
                 $next_question = $questions[$i + 1];
             }
         }

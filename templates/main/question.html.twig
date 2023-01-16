@@ -25,7 +25,11 @@
 			</div>
 				{% endfor %}
 		</div>
-		<a href={{ path('event_question', {'id': next_question.id}) }} style="display: none;" id="next_question"/>
+		{% if next_question %}
+			<a href={{ path('event_question', {'id': next_question.id}) }} style="display: none;" id="next_question"/>
+		{% else %}
+			<a href={{ path('homepage')}} style="display: none;" id="next_question"/>
+		{% endif %}
 	</div>
 <script>
 	let count = 11
@@ -34,7 +38,7 @@
 
 	setTimeout(() => {
 		document.getElementById('next_question').click();
-	}, 11000);
+	}, 2000);
 
 	let interval = setInterval(() => {
 	h1.innerHTML = -- count;

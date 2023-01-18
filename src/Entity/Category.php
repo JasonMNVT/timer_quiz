@@ -24,9 +24,13 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Score::class)]
+    private Collection $scores;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     public function __toString()
@@ -89,6 +93,36 @@ class Category
     public function setImg(string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Score>
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Score $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores->add($score);
+            $score->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Score $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            // set the owning side to null (unless already changed)
+            if ($score->getCategory() === $this) {
+                $score->setCategory(null);
+            }
+        }
 
         return $this;
     }

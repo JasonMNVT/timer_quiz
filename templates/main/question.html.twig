@@ -5,45 +5,130 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="page-container">
 		<div class="question-container">
-			<h1 class="timer display-1"></h1>
+			<p class="score align-self-start">Score: <span class="n-score"></span></p>
+			<h1 class="timer"></h1>
 			<h2 class="quiz-question">
 				{{ question.title }}
 			</h2>
 			<div class="responses-container">
 				{% for response in responses %}
-					<button class="btn btn-outline-light">
+					<button {% if response.isResponse %} 
+					id="b-response" {% else %} id="m-response" {% endif %} 
+					class="btn btn-outline-light btn-response" 
+					>
 						{{ response.title }}
 					</button>
 				{% else %}
-				<table>
-					<tr>
-						<td colspan="3">no records found</td>
-					</tr>
-				</table>
-			</div>
-				{% endfor %}
+					<table>
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					</table>
+				</div>
+			{% endfor %}
 		</div>
 		{% if next_question %}
-			<a href={{ path('event_question', {'id': next_question.id}) }} style="display: none;" id="next_question"/>
+			<a href={{ path('event_question', {'id': next_question.id} ) }} style="display: none;" id="next_question"/>
 		{% else %}
 			<a href={{ path('homepage')}} style="display: none;" id="next_question"/>
 		{% endif %}
 	</div>
-<script>
-	let count = 11
 
-	const h1 = document.querySelector(".timer");
+	<script type="text/javascript">
+		let count = 13
+		let compt = 0
 
-	setTimeout(() => {
-		document.getElementById('next_question').click();
-	}, 2000);
+		const h1 = document.querySelector(".timer");
+		const score = document.querySelector(".n-score");
 
-	let interval = setInterval(() => {
-	h1.innerHTML = -- count;
-	if (count === 0) 
-	clearInterval(interval);
-	}, 1000);
-</script>
+		setTimeout(() => {
+			document.getElementById('next_question').click();
+		}, 15500);
+
+		setTimeout(() => {
+			document.querySelector(".timer").style.visibility = "visible";
+		}, 3000)
+
+		setTimeout(() => {
+			document.querySelector(".responses-container").style.visibility = "visible";
+		}, 2500)
+
+		let interval = setInterval(() => {
+		h1.innerHTML = -- count;
+		if (count === 0) {
+			document.querySelectorAll('.btn-response').forEach(function(btn){
+				btn.disabled = true;
+			})			
+			clearInterval(interval);
+		}
+		}, 1000);
+		
+
+		function checkResponse(btn_clicked) {
+
+			document.getElementById('b-response').style.background = "green";
+
+			if (btn_clicked.id == "m-response") {
+				btn_clicked.style.background = "red";
+			}
+			document.querySelectorAll('.btn-response').forEach(function(btn){
+				btn.disabled = true;
+			})
+
+			clearInterval(interval);
+
+			if (btn_clicked.id == "b-response" && count == 10) {
+				compt += 10;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 9) {
+				compt += 9;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 8) {
+				compt += 8;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 7) {
+				compt += 7;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 6) {
+				compt += 6;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 5) {
+				compt += 5;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 4) {
+				compt += 4;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 3) {
+				compt += 3;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 2) {
+				compt += 2;
+				score.innerHTML = compt;
+			}
+			if (btn_clicked.id == "b-response" && count == 1) {
+				compt += 1;
+				score.innerHTML = compt;
+			}
+
+			setTimeout(() => {
+				document.getElementById('next_question').click();
+			}, 2000)
+		}
+
+		document.querySelectorAll('.btn-response').forEach(btn => {
+			btn.addEventListener('click', function(event){
+				checkResponse(event.target);
+			})
+		});
+	</script>
 {% endblock %}

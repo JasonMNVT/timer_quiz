@@ -31,16 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Category::class)]
-    private Collection $categories;
-
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Question::class)]
-    private Collection $questions;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Score::class)]
+    private Collection $scores;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,59 +112,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Category>
+     * @return Collection<int, Score>
      */
-    public function getCategories(): Collection
+    public function getScores(): Collection
     {
-        return $this->categories;
+        return $this->scores;
     }
 
-    public function addCategory(Category $category): self
+    public function addScore(Score $score): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->setAuthor($this);
+        if (!$this->scores->contains($score)) {
+            $this->scores->add($score);
+            $score->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
+    public function removeScore(Score $score): self
     {
-        if ($this->categories->removeElement($category)) {
+        if ($this->scores->removeElement($score)) {
             // set the owning side to null (unless already changed)
-            if ($category->getAuthor() === $this) {
-                $category->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
-
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions->add($question);
-            $question->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
-            if ($question->getAuthor() === $this) {
-                $question->setAuthor(null);
+            if ($score->getUser() === $this) {
+                $score->setUser(null);
             }
         }
 

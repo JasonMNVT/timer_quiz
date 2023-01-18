@@ -38,18 +38,26 @@ class MainController extends AbstractController
         ]);*/
     }
 
+    #[Route('/page-category/{id}', name: 'event_page_category', methods: ['GET'])]
+    public function pageCategory(Category $category): Response
+    {
+        return $this->render('main/pageCategory.html.twig', [
+            'category' => $category,
+        ]);
+    }
+
     #[Route('/question/number/{id}', name: 'event_question', methods: ['GET'])]
     public function showResponses(Question $question): Response
     {
-        // Tableau des réponses de la question
+        // Tableau des réponses de la question.
         $tabResponses = $question->getResponses()->toArray();
-        // Retrouver la catégorie à partir de la question
+        // Retrouver la catégorie à partir de la question.
         $categorie = $question->getCategory();
-        // Tableau des questions de la catégorie
+        // Tableau des questions de la catégorie.
         $questions = $categorie->getQuestions()->toArray();
-        // puis tu recupere la question après $next_question
+        // Récupérer la question suivante.
         $next_question = null;
-        // parcourir le tableau de question, et prendre celle juste après l'actuel $question
+        // Parcourir le tableau des questions et prendre celle juste après l'actuelle.
         for ($i = 0; $i < count($questions) - 1; $i++) {
             if ($question == $questions[$i]) {
                 $next_question = $questions[$i + 1];

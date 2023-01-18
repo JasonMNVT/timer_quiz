@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Timer Quiz
+{% endblock %}
+
+{% block body %}
+	<main id="swup" class="transition-fade">
+		<div class="page-container">
+			<h2 class="h2-page">
+				{{ category.name }}
+			</h2>
+		</div>
+		<a href={{ path('event_category', {'id': category.id} ) }} style="display: none;" id="category_question"/>
+	</main>
+	<script>
+		setTimeout(() => {
+document.getElementById('category_question').click();
+}, 2000);
+	</script>
+{% endblock %}

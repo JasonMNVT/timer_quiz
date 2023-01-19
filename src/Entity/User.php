@@ -31,14 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Score::class)]
-    private Collection $scores;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: QuizUser::class)]
+    private Collection $quizUsers;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->questions = new ArrayCollection();
-        $this->scores = new ArrayCollection();
+        $this->quizUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,29 +112,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Score>
+     * @return Collection<int, QuizUser>
      */
-    public function getScores(): Collection
+    public function getQuizUsers(): Collection
     {
-        return $this->scores;
+        return $this->quizUsers;
     }
 
-    public function addScore(Score $score): self
+    public function addQuizUser(QuizUser $quizUser): self
     {
-        if (!$this->scores->contains($score)) {
-            $this->scores->add($score);
-            $score->setUser($this);
+        if (!$this->quizUsers->contains($quizUser)) {
+            $this->quizUsers->add($quizUser);
+            $quizUser->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeScore(Score $score): self
+    public function removeQuizUser(QuizUser $quizUser): self
     {
-        if ($this->scores->removeElement($score)) {
+        if ($this->quizUsers->removeElement($quizUser)) {
             // set the owning side to null (unless already changed)
-            if ($score->getUser() === $this) {
-                $score->setUser(null);
+            if ($quizUser->getUser() === $this) {
+                $quizUser->setUser(null);
             }
         }
 

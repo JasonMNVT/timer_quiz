@@ -24,13 +24,13 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $img = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Score::class)]
-    private Collection $scores;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: QuizUser::class)]
+    private Collection $quizUsers;
 
     public function __construct()
     {
         $this->questions = new ArrayCollection();
-        $this->scores = new ArrayCollection();
+        $this->quizUsers = new ArrayCollection();
     }
 
     public function __toString()
@@ -98,29 +98,29 @@ class Category
     }
 
     /**
-     * @return Collection<int, Score>
+     * @return Collection<int, QuizUser>
      */
-    public function getScores(): Collection
+    public function getQuizUsers(): Collection
     {
-        return $this->scores;
+        return $this->quizUsers;
     }
 
-    public function addScore(Score $score): self
+    public function addQuizUser(QuizUser $quizUser): self
     {
-        if (!$this->scores->contains($score)) {
-            $this->scores->add($score);
-            $score->setCategory($this);
+        if (!$this->quizUsers->contains($quizUser)) {
+            $this->quizUsers->add($quizUser);
+            $quizUser->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeScore(Score $score): self
+    public function removeQuizUser(QuizUser $quizUser): self
     {
-        if ($this->scores->removeElement($score)) {
+        if ($this->quizUsers->removeElement($quizUser)) {
             // set the owning side to null (unless already changed)
-            if ($score->getCategory() === $this) {
-                $score->setCategory(null);
+            if ($quizUser->getCategory() === $this) {
+                $quizUser->setCategory(null);
             }
         }
 

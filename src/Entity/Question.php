@@ -24,9 +24,13 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class)]
     private Collection $responses;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuizUserResponse::class)]
+    private Collection $quizUserResponses;
+
     public function __construct()
     {
         $this->responses = new ArrayCollection();
+        $this->quizUserResponses = new ArrayCollection();
     }
 
     public function __toString()
@@ -87,6 +91,36 @@ class Question
             // set the owning side to null (unless already changed)
             if ($response->getQuestion() === $this) {
                 $response->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, QuizUserResponse>
+     */
+    public function getQuizUserResponses(): Collection
+    {
+        return $this->quizUserResponses;
+    }
+
+    public function addQuizUserResponse(QuizUserResponse $quizUserResponse): self
+    {
+        if (!$this->quizUserResponses->contains($quizUserResponse)) {
+            $this->quizUserResponses->add($quizUserResponse);
+            $quizUserResponse->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuizUserResponse(QuizUserResponse $quizUserResponse): self
+    {
+        if ($this->quizUserResponses->removeElement($quizUserResponse)) {
+            // set the owning side to null (unless already changed)
+            if ($quizUserResponse->getQuestion() === $this) {
+                $quizUserResponse->setQuestion(null);
             }
         }
 

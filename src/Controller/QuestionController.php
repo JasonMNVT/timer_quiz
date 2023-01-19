@@ -16,6 +16,10 @@ class QuestionController extends AbstractController
     #[Route('/', name: 'app_question_index', methods: ['GET'])]
     public function index(QuestionRepository $questionRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+        
         return $this->render('question/index.html.twig', [
             'questions' => $questionRepository->findAll(),
         ]);
@@ -24,6 +28,10 @@ class QuestionController extends AbstractController
     #[Route('/new', name: 'app_question_new', methods: ['GET', 'POST'])]
     public function new(Request $request, QuestionRepository $questionRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+        
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
@@ -43,6 +51,10 @@ class QuestionController extends AbstractController
     #[Route('/{id}', name: 'app_question_show', methods: ['GET'])]
     public function show(Question $question): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+        
         return $this->render('question/show.html.twig', [
             'question' => $question,
         ]);
@@ -51,6 +63,10 @@ class QuestionController extends AbstractController
     #[Route('/{id}/edit', name: 'app_question_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+        
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
@@ -69,6 +85,10 @@ class QuestionController extends AbstractController
     #[Route('/{id}', name: 'app_question_delete', methods: ['POST'])]
     public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
+        
         if ($this->isCsrfTokenValid('delete'.$question->getId(), $request->request->get('_token'))) {
             $questionRepository->remove($question, true);
         }

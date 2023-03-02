@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Timer Quiz
+{% block title %}Error 404
 {% endblock %}
 
 {% block body %}
@@ -8,11 +8,7 @@
 		{% include "component/navbar.html.twig" %}
 	{% endblock %}
 	<div class="container">
-		<h2 class="display-5">Créer une nouvelle catégorie</h2>
-
-		{{ include('category/_form.html.twig') }}
-
-		<a href="{{ path('app_category_index') }}">back to list</a>
+		<h2 class="display-5">Erreur 404 ! Page non trouvée !</h2>
 	</div>
 	{% block footer %}
 		{% include "component/footer.html.twig" %}

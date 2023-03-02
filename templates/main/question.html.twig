@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="page-container">
 		<div class="question-container">
-			<p class="score align-self-start">Score: <span class="n-score"></span></p>
+			{# <p class="score align-self-start">Score: <span class="n-score"></span></p> #}
 			<h1 class="timer"></h1>
 			<h2 class="quiz-question">
 				{{ question.title }}
@@ -37,20 +37,26 @@
 	</div>
 
 	<script type="text/javascript">
+		
+		// Compteur du timer (on commence à 13 à cause du timeout de 3 secondes)
 		let count = 13
-		let compt = 0
+
+		// Compteur du score
+		// let compt = 0
 
 		const h1 = document.querySelector(".timer");
-		const score = document.querySelector(".n-score");
+		// let score = document.querySelector(".n-score");
 
 		setTimeout(() => {
 			document.getElementById('next_question').click();
 		}, 15500);
 
+		// Faire apparaître le timer après 3 secondes
 		setTimeout(() => {
 			document.querySelector(".timer").style.visibility = "visible";
 		}, 3000)
 
+		// Faire apparaître les réponses après 2,5 secondes
 		setTimeout(() => {
 			document.querySelector(".responses-container").style.visibility = "visible";
 		}, 2500)
@@ -79,46 +85,38 @@
 
 			clearInterval(interval);
 
-			if (btn_clicked.id == "b-response" && count == 10) {
-				compt += 10;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 9) {
-				compt += 9;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 8) {
-				compt += 8;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 7) {
-				compt += 7;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 6) {
-				compt += 6;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 5) {
-				compt += 5;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 4) {
-				compt += 4;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 3) {
-				compt += 3;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 2) {
-				compt += 2;
-				score.innerHTML = compt;
-			}
-			if (btn_clicked.id == "b-response" && count == 1) {
-				compt += 1;
-				score.innerHTML = compt;
-			}
+			// if (btn_clicked.id == "b-response" && count == 10) {
+			// 	compt = 10;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 9) {
+			// 	compt = 9;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 8) {
+			// 	compt = 8;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 7) {
+			// 	compt = 7;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 6) {
+			// 	compt = 6;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 5) {
+			// 	compt = 5;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 4) {
+			// 	compt = 4;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 3) {
+			// 	compt = 3;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 2) {
+			// 	compt = 2;
+			// }
+			// if (btn_clicked.id == "b-response" && count == 1) {
+			// 	compt = 1;
+			// }
+
+			// score.innerHTML += compt;
 
 			setTimeout(() => {
 				document.getElementById('next_question').click();

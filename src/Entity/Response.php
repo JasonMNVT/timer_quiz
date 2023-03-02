@@ -21,7 +21,7 @@ class Response
 
     #[ORM\ManyToOne(inversedBy: 'responses')]
     private ?Question $question = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;

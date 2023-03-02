@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\QuizUserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuizUserRepository::class)]
@@ -21,16 +19,11 @@ class QuizUser
     #[ORM\ManyToOne(inversedBy: 'quizUsers')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'quiz_user', targetEntity: QuizUserResponse::class)]
-    private Collection $quizUserResponses;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $date = null;
 
-    public function __construct()
-    {
-        $this->quizUserResponses = new ArrayCollection();
-    }
+    #[ORM\Column(nullable: true)]
+    private ?int $score = null;
 
     public function getId(): ?int
     {
@@ -61,36 +54,6 @@ class QuizUser
         return $this;
     }
 
-    /**
-     * @return Collection<int, QuizUserResponse>
-     */
-    public function getQuizUserResponses(): Collection
-    {
-        return $this->quizUserResponses;
-    }
-
-    public function addQuizUserResponse(QuizUserResponse $quizUserResponse): self
-    {
-        if (!$this->quizUserResponses->contains($quizUserResponse)) {
-            $this->quizUserResponses->add($quizUserResponse);
-            $quizUserResponse->setQuizUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuizUserResponse(QuizUserResponse $quizUserResponse): self
-    {
-        if ($this->quizUserResponses->removeElement($quizUserResponse)) {
-            // set the owning side to null (unless already changed)
-            if ($quizUserResponse->getQuizUser() === $this) {
-                $quizUserResponse->setQuizUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDate(): ?string
     {
         return $this->date;
@@ -99,6 +62,18 @@ class QuizUser
     public function setDate(?string $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(?int $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }

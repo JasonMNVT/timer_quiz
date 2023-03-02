@@ -167,6 +167,17 @@ span {
     font-family: 'Rubik Moonrocks', cursive;
 }
 
+.footer {
+    width: 100%;
+    height: 60px;
+    background-color: #001E28;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 10px;
+    gap: 5px;
+}
+
 .homepage-button {
     width: 50%;
     display: flex;

@@ -9,20 +9,31 @@
 			</li>
 			{% if app.user %}
 				<li class="nav-item active">
-					<p>Connecté(e) : {{ app.user.userIdentifier }}</p>
+					<p>Connecté(e) :
+						{{ app.user.userIdentifier }}</p>
 				</li>
-				<li class="nav-item active">
-					<u><a class="nav-link" href="{{ path('app_account')}}">Mon Profil</a></u>
-				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item active">
+						<u>
+							<a class="nav-link" href="{{ path('app_account')}}">Mon Profil</a>
+						</u>
+					</li>
+				{% endif %}
 				<li class="nav-item active" style="margin-left: 50%">
-					<u><a class="nav-link" href="{{ path('app_logout')}}">[ Déconnexion ]</a></u>
+					<u>
+						<a class="nav-link" href="{{ path('app_logout')}}">[ Déconnexion ]</a>
+					</u>
 				</li>
 			{% else %}
 				<li class="nav-item active">
-					<u><a class="nav-link" href="{{ path('app_register')}}">S'inscrire</a></u>
+					<u>
+						<a class="nav-link" href="{{ path('app_register')}}">S'inscrire</a>
+					</u>
 				</li>
 				<li class="nav-item active">
-					<u><a class="nav-link" href="{{ path('app_login')}}">Se connecter</a></u>
+					<u>
+						<a class="nav-link" href="{{ path('app_login')}}">Se connecter</a>
+					</u>
 				</li>
 			{% endif %}
 		</ul>

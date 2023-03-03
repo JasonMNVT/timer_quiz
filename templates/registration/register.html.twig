@@ -6,16 +6,18 @@
 {% block body %}
 	<div class="body-container">
 		<div class="homepage-container">
-			<h2 class="display-5">Inscription</h2>
+			<h2 class="display-5">Créer un compte</h2>
 
 			{{ form_start(registrationForm) }}
 			{{ form_row(registrationForm.username, {
-			label: 'Username :'
+			label: "Définir un nom d'utilisateur :"
 		 }) }}
 			{{ form_row(registrationForm.plainPassword, {
-            label: 'Password :'
+            label: "Choisir un mot de passe :"
         }) }}
-			{{ form_row(registrationForm.agreeTerms) }}
+			{{ form_row(registrationForm.agreeTerms, {
+				label: "Accepter les conditions générales"
+			}) }}
 
 			<button type="submit" class="btn btn-md btn-primary">S'inscrire</button>
 			{{ form_end(registrationForm) }}
